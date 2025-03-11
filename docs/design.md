@@ -1,7 +1,9 @@
 <!--- vim: set ts=2 sw=2: --->
+
 # action-go
 
 ## Philosophy
+
 The goal is to build a few foundational Github Actions to make it easy to build
 and test _large_ Go programs efficiently and cost effectively in Github Actions.
 
@@ -17,6 +19,7 @@ We'll have three smaller actions that are callable and chainable in workflows:
 - `analyze`: Merge data from parallel partitioned test workflows, summarize it, store it, analyze it
 
 ### Constraints
+
 Github Actions has specific limitations that can make testing and building large
 Go programs quite a pain. Namely:
 
@@ -59,13 +62,15 @@ As runners cannot share state, as there is no shared `status` or `conclusion`
 on matrix jobs, and because `needs:` is not a reliable way to determine such,
 we need a separate job that executes after the parallel test execution. This job
 is responsible for:
-  - aggregating test logs
-  - generating an overall summary
-  - data race identification and data race summary generation
-  - aggregation, sanitization and caching of new timing data
-  - determining an overall status for all of the jobs
+
+- aggregating test logs
+- generating an overall summary
+- data race identification and data race summary generation
+- aggregation, sanitization and caching of new timing data
+- determining an overall status for all of the jobs
 
 #### Go Modules
+
 We'll go for a strategy where we minimally save Go modules in Github Actions
 cache. (Later we could also use external storage)
 
@@ -74,6 +79,7 @@ directory: `$(go mod GOMODCACHE)/cache`. Go will then be responsible for
 unzipping them in parallel instead of a singular tar extract.
 
 #### Go build cache
+
 Go's default build cache is filesystem based. This makes a lot of sense for a
 developer machine. On Github Actions, where we split builds and tests across
 many runners, to take advantage of such a filesystem cache we have to store the
@@ -113,6 +119,7 @@ repository and its unique development patterns.
 ```
 
 #### Test partitioning
+
 Test paritioning is not supported natively via `go test` or any other standard
 tool in the Go toolchain. While `go test` is capable of filtering and targeting
 test cases and modules, we need something more robust to handle aggregating the
@@ -130,6 +137,7 @@ release of `gotestsum` will be built into the `test` action.
 metadata so we won't advocate for using an extra job to determine a dynamic
 matrix. Instead, we'll advocate for a pattern where a matrix range is provided
 that results in the total number of test runners:
+
 ```yaml
 strategy:
   fail-fast: false
@@ -145,6 +153,7 @@ enough for env vars, tags, modules, etc.
 ## Usage
 
 ### Go Build
+
 To build a Go program, run:
 
 ```yaml
@@ -172,6 +181,7 @@ steps:
 ```
 
 If you'd like more control, you can set more parameters:
+
 ```yaml
 steps:
   - uses: ryancragun/action-go/build@v1
@@ -185,6 +195,7 @@ steps:
 ```
 
 ### Go Test
+
 To execute Go tests, run:
 
 ```yaml
@@ -237,6 +248,7 @@ jobs:
 ```
 
 If you'd like more control, you can set more parameters:
+
 ```yaml
 steps:
   - uses: ryancragun/action-go/test@v1

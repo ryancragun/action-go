@@ -4,10 +4,10 @@
 const jestConfig = {
   clearMocks: true,
   collectCoverage: true,
-  collectCoverageFrom: ['./src/**'],
-  coverageDirectory: './coverage',
-  coveragePathIgnorePatterns: ['/node_modules/', '/dist/'],
-  coverageReporters: ['json-summary', 'text', 'lcov'],
+  collectCoverageFrom: ["./src/**"],
+  coverageDirectory: "./coverage",
+  coveragePathIgnorePatterns: ["/node_modules/", "/dist/"],
+  coverageReporters: ["json-summary", "text", "lcov"],
   // Uncomment the below lines if you would like to enforce a coverage threshold
   // for your action. This will fail the build if the coverage is below the
   // specified thresholds.
@@ -19,12 +19,12 @@ const jestConfig = {
   //     statements: 100
   //   }
   // },
-  moduleFileExtensions: ['js'],
-  reporters: ['default'],
-  testEnvironment: 'node',
-  testMatch: ['**/*.test.js'],
-  testPathIgnorePatterns: ['/dist/', '/node_modules/'],
-  verbose: true
-}
+  moduleFileExtensions: ["js"],
+  reporters: ["default"],
+  testEnvironment: "node",
+  testMatch: ["**/*.test.js"],
+  testPathIgnorePatterns: ["/dist/", "/node_modules/"],
+  verbose: true,
+};
 
-export default jestConfig
+export default jestConfig;

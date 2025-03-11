@@ -1,17 +1,17 @@
 {
-  "name": "action-go-test",
-  "description": "A set of foundational actions to make it easy to build and test _large_ Go programs",
+  "name": "action-go",
+  "description": "A set of foundational actions to make it easy to build and test large Go programs",
   "version": "0.0.0",
   "author": "me@ryan.ec",
   "type": "module",
   "private": true,
-  "homepage": "https://github.com/ryancragun/action-go-test#readme",
+  "homepage": "https://github.com/ryancragun/action-go#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryancragun/action-go-test.git"
+    "url": "git+https://github.com/ryancragun/action-go.git"
   },
   "bugs": {
-    "url": "https://github.com/ryancragun/action-go-test/issues"
+    "url": "https://github.com/ryancragun/action-go/issues"
   },
   "keywords": [
     "actions",
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.7",
-    "@github/local-action": "^3.1.0",
+    "@github/local-action": "^2.2.1",
     "@jest/globals": "^29.7.0",
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.0",
